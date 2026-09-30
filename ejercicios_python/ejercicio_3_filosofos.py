@@ -68,7 +68,16 @@ def filosofo(id, rondas=3):
         #
         # TODO: Adquiere los tenedores adyacentes de forma segura, invoca comer(id)
         # y libera los tenedores:
-        pass
+        if id % 2 != 0:
+            # Primero intenta levantar el derecho, luego el izquierdo
+            with tenedores[tenedor_der]:
+                with tenedores[tenedor_izq]:
+                    comer(id)
+        else:
+            # Los filósofos pares levantan primero el izquierdo, luego el derecho
+            with tenedores[tenedor_izq]:
+                with tenedores[tenedor_der]:
+                    comer(id)
         # =========================================================================
         # FIN TODO
         # =========================================================================
